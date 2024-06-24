@@ -1,23 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
+import { Chat } from './components/Chat';
+import { Sidebar } from './components/Sidebar';
+import { Route, Routes } from "react-router-dom";
+
 
 function App() {
+  localStorage.setItem('senderId', 'user1')
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='flex w-full h-screen gap-2'>
+      <Sidebar />
+      <Routes>
+        <Route exact path="/chat/:userId" element={<Chat />} />
+      </Routes>
     </div>
   );
 }
