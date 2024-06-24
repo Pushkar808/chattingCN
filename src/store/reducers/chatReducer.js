@@ -11,11 +11,17 @@ const initialState = {
 const chatReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_CHAT:
-            debugger;
             const { newMessage, receiverId } = action.payload;
+            const oldChats = state.chats[receiverId] ? {
+                ...state.chats[receiverId],
+                messages: [...state.chats[receiverId].messages, newMessage]
+            } : {
+                chatId: `chat${receiverId}`,
+                messages: [newMessage]
+            };
             return {
                 ...state,
-                chats: { ...state?.chats, [receiverId]: { ...state?.chats[receiverId], ...newMessage } }
+                chats: { ...state?.chats, [receiverId]: oldChats }
             };
         case ADD_USER:
             return {
