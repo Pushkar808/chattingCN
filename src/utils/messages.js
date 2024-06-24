@@ -29,19 +29,19 @@ module.exports = {
                 "messageId": "msg1",
                 "senderId": "user1",
                 "timestamp": "2023-06-24T12:34:56Z",
-                "text": "2Hi Bob, how are you?"
+                "text": "Hey How You Doing Joey ?"
             },
             {
                 "messageId": "msg2",
                 "senderId": "2",
                 "timestamp": "2023-06-24T12:35:10Z",
-                "text": "2Hi Alice, I'm good! How about you?"
+                "text": "Nothing Much Just Hanging Out"
             },
             {
                 "messageId": "msg3",
                 "senderId": "user1",
                 "timestamp": "2023-06-24T12:35:25Z",
-                "text": "2I'm doing well, thanks!"
+                "text": "Oh Thats Great , I am Building this chat app"
             }
         ]
     }

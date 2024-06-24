@@ -6,14 +6,21 @@ import { v4 as uuidv4 } from 'uuid';
 import { addItem } from '../store/action/chatAction';
 export const Chat = () => {
     const [message, setMessage] = useState("");
+    const [searchText, setSearchText] = useState("");
+    const [messageList, setMessageList] = useState([]);
     const dispatch = useDispatch();
     const { userId } = useParams();
     const senderId = localStorage.getItem('senderId');
     const messages = useSelector((state) => state?.chats);
     useEffect(() => {
-        console.log(messages)
-    }, [messages])
+        setMessageList(messages[userId]?.messages)
+        console.log(messages[userId]?.messages)
+        setSearchText("")
+    }, [userId, messages])
 
+    useEffect(() => {
+        searchMessage();
+    }, [searchText])
 
     const sendMessage = (e) => {
         e.preventDefault();
@@ -28,10 +35,29 @@ export const Chat = () => {
             setMessage("")//resets the message placeholder
         }
     }
+
+    const searchMessage = () => {
+        if (searchText?.length <= 1)
+            setMessageList(messages[userId]?.messages)
+        else {
+            const searchResult = messageList?.filter((message) => message?.text?.toLowerCase().includes(searchText));
+            setMessageList(searchResult);
+        }
+    }
     return (
-        <div className="w-full bg-white pt-4 flex flex-col justify-between">
-            <div className="space-y-4  overflow-y-auto pb-4  px-4 " >
-                {messages[userId]?.messages?.map((message, index) => {
+        <div className="w-full bg-white flex flex-col justify-between">
+            <div className='w-full'>
+                <input
+                    type="text"
+                    className="w-full flex-1 p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-none"
+                    onChange={(e) => setSearchText(e.target.value)}
+                    placeholder="Search ..."
+                    value={searchText}
+
+                />
+            </div>
+            <div className="space-y-4 h-screen overflow-y-auto py-4  px-4 " >
+                {messageList?.map((message, index) => {
                     return (
                         <div key={index}>
                             {message?.senderId === userId ?
