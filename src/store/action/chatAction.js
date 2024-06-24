@@ -1,4 +1,4 @@
-import { ADD_CHAT, ADD_USER } from "../../utils/actionTypes";
+import { ADD_CHAT, GET_USER } from "../../utils/actionTypes";
 
 
 const addItem = (data) => {
@@ -8,10 +8,11 @@ const addItem = (data) => {
     };
 };
 
-const deleteItem = () => {
+const getUser = (data) => {
     return {
-        type: ADD_USER,
+        type: GET_USER,
+        payload: data
     };
 };
 
-export { addItem, deleteItem };
+export { addItem, getUser };

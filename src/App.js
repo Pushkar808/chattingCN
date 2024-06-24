@@ -7,7 +7,7 @@ import { Route, Routes } from "react-router-dom";
 function App() {
   localStorage.setItem('senderId', 'user1')
   return (
-    <div className='flex w-full h-screen gap-2'>
+    <div className='flex w-full h-screen'>
       <Sidebar />
       <Routes>
         <Route exact path="/chat/:userId" element={<Chat />} />

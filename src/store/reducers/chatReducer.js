@@ -1,11 +1,11 @@
-import { ADD_CHAT, ADD_USER } from "../../utils/actionTypes";
+import { ADD_CHAT, GET_USER } from "../../utils/actionTypes";
 import messages from "../../utils/messages";
 import { users } from "../../utils/users";
 
 
 const initialState = {
     chats: messages,
-    users: users
+    users: []
 };
 
 const chatReducer = (state = initialState, action) => {
@@ -23,10 +23,10 @@ const chatReducer = (state = initialState, action) => {
                 ...state,
                 chats: { ...state?.chats, [receiverId]: oldChats }
             };
-        case ADD_USER:
+        case GET_USER:
             return {
                 ...state,
-                users: [...state.users, state.payload],
+                users: users?.filter((user) => user?.name?.toLowerCase()?.includes(action.payload?.name))
             };
         default:
             return state;

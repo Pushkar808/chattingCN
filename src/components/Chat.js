@@ -30,7 +30,7 @@ export const Chat = () => {
     }
     return (
         <div className="w-full bg-white pt-4 flex flex-col justify-between">
-            <div className="space-y-4  overflow-y-auto pb-4" >
+            <div className="space-y-4  overflow-y-auto pb-4  px-4 " >
                 {messages[userId]?.messages?.map((message, index) => {
                     return (
                         <div key={index}>
